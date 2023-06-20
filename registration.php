@@ -87,10 +87,13 @@
       $("#fetchDetails").on('click',()=>{
         var rno = $("#rnoInput").val();
         if (rno == ""){
-        Swal.fire(
-        'Please enter a valid Roll Number',
-        '',
-        'error')
+          Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: "Please enter a valid Roll Number",
+              showConfirmButton: false,
+              timer: 1000
+          })
         } else {
             $.ajax({
               url: "./api/getStudentDetails.php",
@@ -141,11 +144,15 @@
                 var rfid_id = $("#rfid_id").val();
                 var rno = $("#rnoInput").val();
                 if (rfid_id == "") {
-                    Swal.fire(
-                        'Please enter a valid RFID ID',
-                        '',
-                        'error'
-                    );
+
+                  Swal.fire({
+                                    position: 'center',
+                                    icon: 'error',
+                                    title: "Please enter a valid RFID ID",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                   
                 } else {
                     // Send the RFID ID to the server for insertion into the database
                     $.ajax({
