@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="utf-8" />
-    <title>PHPMYADMIN</title>
+    <title>PARIKSIT RFID ATTENDANCE SYSTEM</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="" name="description" />
     <meta content="PARIKSIT INC." name="author" />
@@ -30,13 +30,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="shortcut icon" href="https://media.discordapp.net/attachments/1078997396995985408/1115983582331146352/logo-dark-sm.png">
 
     <!-- Theme Config Js -->
-    <script src="./vendors/assets/js/hyper-config.js"></script>
+    <script src="../vendors/assets/js/hyper-config.js"></script>
 
     <!-- App css -->
-    <link href="./vendors/assets/css/app-saas.min.css" rel="stylesheet" type="text/css" id="app-style" />
+    <link href="../vendors/assets/css/app-saas.min.css" rel="stylesheet" type="text/css" id="app-style" />
 
     <!-- Icons css -->
-    <link href="./vendors/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="../vendors/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body class="authentication-bg">
@@ -119,10 +119,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <script>document.write(new Date().getFullYear())</script> © PARIKSIT INC.
     </footer>
     <!-- Vendor js -->
-    <script src="./vendors/assets/js/vendor.min.js"></script>
+    <script src="../vendors/assets/js/vendor.min.js"></script>
 
     <!-- App js -->
-    <script src="./vendors/assets/js/app.min.js"></script>
+    <script src="../vendors/assets/js/app.min.js"></script>
 
 </body>
 

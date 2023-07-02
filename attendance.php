@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include 'header.php'
-    ?>
+    include 'header.php'
+?>
 
 <head>
 
@@ -12,7 +12,7 @@ include 'header.php'
     <title>PARIKSIT RFID Attendance</title>
 
     <!-- Font Awesome -->
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="sweetalert2.all.min.js"></script>
 
