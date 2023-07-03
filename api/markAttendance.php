@@ -31,8 +31,12 @@ if (isset($_POST['rfid_id'])) {
     $stmt->execute();
 
     $student = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($rfid_id==0){
+        $response = array('status' => 'INVALID_REQUEST');
+        echo json_encode($response);
+    }
 
-    if ($student) {
+    else if ($student) {
         // Get the current date and time
         $currentDateTime = time();
 
