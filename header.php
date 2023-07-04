@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
+    <!-- <link href="css/style.css" rel="stylesheet" /> -->
     
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
@@ -47,14 +47,14 @@
 <body>
     <header class="bg-light text-center text-lg-start">
         <!-- Copyright -->
-        <div class="text-light text-center p-1" id="header" style="background-color: rgb(63, 81, 181);">
+        <!-- <div class="text-light text-center p-1" id="header" style="background-color: rgb(63, 81, 181);">
             <h4>
                 <a href="" style="color:white">
                     <h4 class="text-center " style="font-family:cinzel;">PARIKSIT RFID ATTENDANCE SYSTEM
                 </a>
             </h4>
-            <!-- <a class="text-light" href="https://somanshkumar.me">PARIKSIT INC.</a> -->
-        </div>
+            <a class="text-light" href="https://somanshkumar.me">PARIKSIT INC.</a>
+        </div> -->
         <!-- Copyright -->
     </header>
 
