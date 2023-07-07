@@ -1,18 +1,24 @@
 <?php
-// Check if form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Define the correct user ID and password
-    $correctUserID = "admin";
-    $correctPassword = "741852";
+    session_start();
+    if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+    header("Location: ./attendance.php");
+    exit();
+}
 
-    // Check if the entered user ID and password are correct
-    if ($_POST['userid'] === $correctUserID && $_POST['password'] === $correctPassword) {
-        // Redirect to the desired page
-        header("Location: attendance.php");
-        exit;
-    } else {
-        $errorMessage = "Invalid user ID or password. Please try again.";
-    }
+if(isset($_POST['login'])){
+    $correctUserID = "admin";
+    $correctPassword = "123";
+    $userid = $_POST['userid'];
+    $password = $_POST['password'];
+    $stringPass = strval($password);
+    if($correctPassword==$stringPass && $correctUserID == $userid){
+        $_SESSION['logged_in'] = true;
+        header("Location:./attendance.php");
+    }else{
+        ?>
+        <script>alert("Invalid Credentials")</script>
+        <?php
+    }   
 }
 ?>
 
@@ -30,13 +36,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="shortcut icon" href="https://media.discordapp.net/attachments/1078997396995985408/1115983582331146352/logo-dark-sm.png">
 
     <!-- Theme Config Js -->
-    <script src="./venndors/assets/js/hyper-config.js"></script>
+    <script src="./vendors/assets/js/hyper-config.js"></script>
 
     <!-- App css -->
-    <link href="./venndors/assets/css/app-saas.min.css" rel="stylesheet" type="text/css" id="app-style" />
+    <link href="./vendors/assets/css/app-saas.min.css" rel="stylesheet" type="text/css" id="app-style" />
 
     <!-- Icons css -->
-    <link href="./venndors/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="./vendors/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body class="authentication-bg">
@@ -67,7 +73,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <?php echo $errorMessage; ?>
                                     </div>
                                 <?php } ?>
-
                                 <div class="mb-3">
                                     <label for="userid" class="form-label">User ID</label>
                                     <input class="form-control" type="text" id="userid" name="userid" required="" placeholder="Enter your user ID">
@@ -92,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </div> -->
 
                                 <div class="mb-3 mb-0 text-center">
-                                    <button class="btn btn-primary" type="submit"> Log In </button>
+                                    <button class="btn btn-primary" type="submit" name = "login"> Log In </button>
                                 </div>
 
                             </form>
@@ -119,10 +124,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <script>document.write(new Date().getFullYear())</script> © PARIKSIT INC.
     </footer>
     <!-- Vendor js -->
-    <script src="./venndors/assets/js/vendor.min.js"></script>
+    <script src="./vendors/assets/js/vendor.min.js"></script>
 
     <!-- App js -->
-    <script src="./venndors/assets/js/app.min.js"></script>
+    <script src="./vendors/assets/js/app.min.js"></script>
 
 </body>
 
