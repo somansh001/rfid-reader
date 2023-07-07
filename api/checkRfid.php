@@ -15,32 +15,33 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch the correct RFID from the database
-$sql = "SELECT rfid FROM credentials"; // Modify the query based on your database structure
-$result = $conn->query($sql);
+// Process the RFID value
+if (isset($_POST['rfid'])) {
+    $rfid = $_POST['rfid'];
 
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $correctRFID = $row['rfid'];
+    // Fetch all RFIDs from the database
+    $sql = "SELECT rfid FROM credentials";
+    $result = $conn->query($sql);
 
-    // Process the RFID value
-    if (isset($_POST['rfid'])) {
-        $rfid = $_POST['rfid'];
+    $validRFID = false;
 
-        // Check if the entered RFID matches the correct RFID
-        if ($rfid === $correctRFID) {
-            // RFID is correct
-            $_SESSION['logged_in'] = true;
-            echo json_encode(['valid' => true]);
-        } else {
-            // RFID is incorrect
-            echo json_encode(['valid' => false]);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            if ($rfid === $row['rfid']) {
+                // RFID is correct
+                $_SESSION['logged_in'] = true;
+                $validRFID = true;
+                break;
+            }
         }
     }
-} else {
-    // RFID not found in the database
-    echo json_encode(['valid' => false]);
+
+    // Close the result set
+    $result->free_result();
 }
+
+// Return the response as JSON
+echo json_encode(['valid' => $validRFID]);
 
 // Close the database connection
 $conn->close();

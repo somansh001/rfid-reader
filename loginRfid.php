@@ -82,16 +82,33 @@
             function login() {
                 var rfid = $('#rfid').val();
 
-                // Send AJAX request to setSession.php
+                // Send AJAX request to validate the RFID
                 $.ajax({
-                    url: './api/setSession.php',
+                    url: './api/checkRFID.php',
                     type: 'POST',
                     data: { rfid: rfid },
                     dataType: 'json',
                     success: function (response) {
-                        if (response.success) {
-                            // Redirect to attendance.php or display success message
-                            window.location.href = './attendance.php';
+                        if (response.valid) {
+                            // RFID is valid, proceed with login
+                            // Send AJAX request to setSession.php
+                            $.ajax({
+                                url: './api/setSession.php',
+                                type: 'POST',
+                                data: { rfid: rfid },
+                                dataType: 'json',
+                                success: function (response) {
+                                    if (response.success) {
+                                        // Redirect to attendance.php or display success message
+                                        window.location.href = './attendance.php';
+                                    } else {
+                                        $('#error-message').text('Invalid login credentials');
+                                    }
+                                },
+                                error: function () {
+                                    $('#error-message').text('An error occurred. Please try again.');
+                                }
+                            });
                         } else {
                             $('#error-message').text('Invalid RFID');
                         }
