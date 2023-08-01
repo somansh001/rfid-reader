@@ -9,14 +9,12 @@ $conn2 = mysqli_connect("localhost", "root", "", "rfid_attendance");
 if (isset($_POST['rfid_ids'])) {
     $rfid_ids = $_POST['rfid_ids'];
 
-    // Check if the RFID IDs are in an array
     if (is_array($rfid_ids)) {
         $attDate = date("Y-m-d");
-        // Check if the RFID ID exists in the credentials table
         $idCheck = mysqli_query($conn, "SELECT * FROM `credentials` WHERE `rfid_id` IN ('" . implode("','", $rfid_ids) . "')");
         $numIds = mysqli_num_rows($idCheck);
 
-        if ($numIds === count($rfid_ids)) { // Check if all RFID IDs are found
+        if ($numIds === count($rfid_ids)) {
             $studentData = mysqli_fetch_assoc($idCheck);
             $name = $studentData['username'];
             $std = $studentData['std'];
@@ -28,16 +26,22 @@ if (isset($_POST['rfid_ids'])) {
                 $data = mysqli_fetch_assoc($dateQuery);
                 $studentsArray = json_decode($data['students'], true);
                 $rfid_ids_updated = [];
+                $responseStatus = '';
 
                 foreach ($rfid_ids as $rfid_id) {
-                    // if this rfid_id already exists
                     if (in_array($rfid_id, array_column($studentsArray['students'], 'rfid_id'))) {
-                        // Find the index of the matching student and update out_time
                         $index = array_search($rfid_id, array_column($studentsArray['students'], 'rfid_id'));
-                        $studentsArray['students'][$index]['out_time'] = date("H:i:s");
+                        if ($studentsArray['students'][$index]['out_time'] != '') {
+                            $response = array('status' => 'attendance_taken', 'message' => 'Attendance already taken.');
+                            echo json_encode($response);
+                            exit();
+                        } else {
+                            $studentsArray['students'][$index]['out_time'] = date("H:i:s");
+                            $responseStatus = 'outtime_recorded';
+                        }
                     } else {
-                        // if this rfid_id does not exist in today's attendance, then consider it as in_time
                         array_push($rfid_ids_updated, ['rfid_id' => $rfid_id, 'in_time' => date("H:i:s"), 'out_time' => '']);
+                        $responseStatus = 'intime_recorded';
                     }
                 }
                 $studentsArray['students'] = array_merge($studentsArray['students'], $rfid_ids_updated);
@@ -52,9 +56,10 @@ if (isset($_POST['rfid_ids'])) {
                 $studentsJson = json_encode($studentsArray);
                 $query = "INSERT INTO `$tableName`(`onDate`, `students`) VALUES ('$attDate', '$studentsJson')";
                 $execQuery = mysqli_query($conn2, $query);
+                $responseStatus = 'intime_recorded';
             }
             if ($execQuery) {
-                $response = array('status' => 'OK', 'username' => $name, 'std' => $std, 'batch' => $batch);
+                $response = array('status' => $responseStatus, 'username' => $name, 'std' => $std, 'batch' => $batch);
                 echo json_encode($response);
             } else {
                 $response = array('status' => 'ERROR', 'message' => 'Failed to update attendance.');
