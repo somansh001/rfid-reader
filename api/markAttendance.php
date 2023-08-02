@@ -25,33 +25,30 @@ if (isset($_POST['rfid_ids'])) {
             if ($numRows > 0) {
                 $data = mysqli_fetch_assoc($dateQuery);
                 $studentsArray = json_decode($data['students'], true);
-                $rfid_ids_updated = [];
                 $responseStatus = '';
 
                 foreach ($rfid_ids as $rfid_id) {
-                    if (in_array($rfid_id, array_column($studentsArray['students'], 'rfid_id'))) {
-                        $index = array_search($rfid_id, array_column($studentsArray['students'], 'rfid_id'));
-                        if ($studentsArray['students'][$index]['out_time'] != '') {
+                    if (isset($studentsArray['students'][$rfid_id])) {
+                        if ($studentsArray['students'][$rfid_id]['out_time'] != '') {
                             $response = array('status' => 'attendance_taken', 'message' => 'Attendance already taken.');
                             echo json_encode($response);
                             exit();
                         } else {
-                            $studentsArray['students'][$index]['out_time'] = date("H:i:s");
+                            $studentsArray['students'][$rfid_id]['out_time'] = date("H:i:s");
                             $responseStatus = 'outtime_recorded';
                         }
                     } else {
-                        array_push($rfid_ids_updated, ['rfid_id' => $rfid_id, 'in_time' => date("H:i:s"), 'out_time' => '']);
+                        $studentsArray['students'][$rfid_id] = ['in_time' => date("H:i:s"), 'out_time' => ''];
                         $responseStatus = 'intime_recorded';
                     }
                 }
-                $studentsArray['students'] = array_merge($studentsArray['students'], $rfid_ids_updated);
                 $studentsJson = json_encode($studentsArray);
                 $query = "UPDATE `$tableName` SET `students` = '$studentsJson' WHERE `onDate` = '$attDate'";
                 $execQuery = mysqli_query($conn2, $query);
             } else {
                 $studentsArray = array('students' => []);
                 foreach ($rfid_ids as $rfid_id) {
-                    array_push($studentsArray['students'], ['rfid_id' => $rfid_id, 'in_time' => date("H:i:s"), 'out_time' => '']);
+                    $studentsArray['students'][$rfid_id] = ['in_time' => date("H:i:s"), 'out_time' => ''];
                 }
                 $studentsJson = json_encode($studentsArray);
                 $query = "INSERT INTO `$tableName`(`onDate`, `students`) VALUES ('$attDate', '$studentsJson')";

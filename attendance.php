@@ -77,7 +77,7 @@
 
             // Add an event listener to the attendance submit button
             $("#attendance_btn").on('click', () => {
-                var rfid_ids = [$("#rfid_id").val()]; // Assuming you have a single input field for RFID ID
+                var rfid_ids = [$("#rfid_id").val()];
 
                 if (rfid_ids[0] == "") {
                     Swal.fire(
@@ -86,7 +86,6 @@
                         'error'
                     );
                 } else {
-                    // Send the RFID IDs to the server for marking attendance
                     $.ajax({
                         url: "./api/markAttendance.php",
                         method: "POST",
@@ -154,7 +153,6 @@
                     });
                 }
             });
-
         });
     </script>
 
