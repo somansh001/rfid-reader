@@ -39,7 +39,7 @@
                 <div class="col col-lg-6">
                     <div class="form-outline">
 
-                        <input type="text" autofocus id="rfid_id" class="form-control" name="rfid_id" />
+                        <input type="number" autofocus id="rfid_id" class="form-control" name="rfid_id" />
                         <label class="form-label" for="rfid_id">RFID ID</label>
 
                     </div>
@@ -77,7 +77,11 @@
 
             // Add an event listener to the attendance submit button
             $("#attendance_btn").on('click', () => {
-                var rfid_ids = [$("#rfid_id").val()];
+                // var rfid_ids = [$("#rfid_id").val()];
+                var rfid_id = $("#rfid_id").val();
+                var rfid_number = parseInt(rfid_id, 10); // This will automatically remove leading zeros
+                var rfid_ids = [rfid_number];
+                // console.log(rfid_ids);
 
                 if (rfid_ids[0] == "") {
                     Swal.fire(
