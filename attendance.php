@@ -103,24 +103,24 @@
                             batch = result.batch;
 
                             if (result.status == "intime_recorded") {
+                                $("#rfid_id").val("");
                                 Swal.fire({
                                     position: 'center',
                                     icon: 'success',
                                     title: `InTime recorded for ${name} of class ${std} ${batch}`,
                                     showConfirmButton: false,
-                                    timer: 1500
-                                }).then(() => {
-                                    $("#rfid_id").val("");
+                                    timer: 900
+
                                 });
                             } else if (result.status == "outtime_recorded") {
+                                $("#rfid_id").val("");
                                 Swal.fire({
                                     position: 'center',
                                     icon: 'success',
                                     title: `OutTime recorded for ${name} of class ${std} ${batch}`,
                                     showConfirmButton: false,
-                                    timer: 1500
-                                }).then(() => {
-                                    $("#rfid_id").val("");
+                                    timer: 900
+
                                 });
                             } else if (result.status == "attendance_taken") {
                                 Swal.fire({
@@ -128,7 +128,7 @@
                                     icon: 'info',
                                     title: `Attendance already taken!`,
                                     showConfirmButton: false,
-                                    timer: 1500
+                                    timer: 900
                                 }).then(() => {
                                     $("#rfid_id").val("");
                                 });
@@ -138,7 +138,7 @@
                                     icon: 'error',
                                     title: `RFID not registered`,
                                     showConfirmButton: false,
-                                    timer: 1500
+                                    timer: 900
                                 }).then(() => {
                                     $("#rfid_id").val("");
                                 });
