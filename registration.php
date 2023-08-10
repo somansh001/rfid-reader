@@ -73,10 +73,10 @@
           <div class="input-group">
             <input type="text" id="rfid_id" class="form-control" />
 
-            <button class="btn btn-sp2 btn-deep-purple btn-custom" uid="11441" title="EDIT" id="editRfid"><i
-                class="fa fa-edit" aria-hidden="true"></i></button>
             <!-- <button class="btn btn-secondary btn-sm" id="editRfid">Edit</button> -->
           </div>
+          <button class="btn btn-sp2 btn-deep-purple btn-custom" uid="11441" title="EDIT" id="editRfid"><i
+              class="fa fa-edit" aria-hidden="true"></i></button>
         </div>
         <div class="col col-lg-6">
           <button class="btn btn-primary btn-rounded" id="rfid_btn">SUBMIT</button>
