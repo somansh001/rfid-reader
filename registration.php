@@ -18,11 +18,17 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
 
   <style>
     .container {
       text-align: center;
       margin: 0 auto;
+    }
+
+    .btn-deep-purple {
+      background-color: #512da8 !important;
+      color: #fff !important;
     }
   </style>
 </head>
@@ -64,20 +70,25 @@
       </div>
       <div class="row my-5 mx-5">
         <div class="col col-lg-6">
-          <div class="form-outline">
+          <div class="input-group">
             <input type="text" id="rfid_id" class="form-control" />
+
+            <button class="btn btn-sp2 btn-deep-purple btn-custom" uid="11441" title="EDIT" id="editRfid"><i
+                class="fa fa-edit" aria-hidden="true"></i></button>
+            <!-- <button class="btn btn-secondary btn-sm" id="editRfid">Edit</button> -->
           </div>
         </div>
         <div class="col col-lg-6">
           <button class="btn btn-primary btn-rounded" id="rfid_btn">SUBMIT</button>
         </div>
       </div>
+
     </div>
     <?php include "includes/footer.php" ?>
   </div>
-  <!-- MDB -->
+
+  <!-- Scripts -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.js"></script>
-  <!-- bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
     crossorigin="anonymous"></script>
@@ -87,6 +98,12 @@
   <script>
     $(document).ready(() => {
       $("#rfid_id").attr("readonly", true);
+
+      $("#editRfid").on('click', () => {
+        $("#rfid_id").removeAttr("readonly");
+        $("#rfid_id").focus();
+      });
+
       $("#fetchDetails").on('click', () => {
         var rno = $("#rnoInput").val();
         if (rno == "") {
@@ -125,7 +142,7 @@
                 );
                 $("#rnoInput").val("");
                 $("#name").val("");
-                $("#group").val("");
+                $("#batch").val("");
                 $("#phoneNo").val("");
                 $("#rfid_id").val("");
               }
@@ -133,10 +150,7 @@
           });
         }
       });
-    });
-  </script>
-  <script>
-    $(document).ready(() => {
+
       $("#rfid_btn").on('click', () => {
         var rfid_id = $("#rfid_id").val();
         var rno = $("#rnoInput").val();
@@ -169,7 +183,7 @@
                 $("#rfid_id").attr("readonly", true);
                 $("#rnoInput").val("");
                 $("#name").val("");
-                $("#group").val("");
+                $("#batch").val("");
                 $("#phoneNo").val("");
                 $("#rfid_id").val("");
               } else {
@@ -185,6 +199,7 @@
       });
     });
   </script>
+
   <script src="sweetalert2.all.min.js"></script>
 </body>
 
