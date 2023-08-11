@@ -26,8 +26,8 @@
       margin: 0 auto;
     }
 
-    .btn-deep-purple {
-      background-color: #512da8 !important;
+    .btn-deep-blue {
+      background-color: #1276EB !important;
       color: #fff !important;
     }
   </style>
@@ -72,9 +72,8 @@
         <div class="col col-lg-6">
           <div class="input-group">
             <input type="text" id="rfid_id" class="form-control" />
-
-            <!-- <button class="btn btn-secondary btn-sm" id="editRfid">Edit</button> -->
-            <button class="btn btn-sp2 btn-deep-purple btn-custom" uid="11441" title="EDIT" id="editRfid"><i
+            &emsp;
+            <button class="btn btn-sp2 btn-deep-blue" title="EDIT" id="editRfid"><i
                 class="fa fa-edit" aria-hidden="true"></i></button>
           </div>
         </div>
