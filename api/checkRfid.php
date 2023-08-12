@@ -2,11 +2,11 @@
 session_start();
 
 // Establish database connection
-// $servername = "localhost";
-// $username = "root";
-// $password = "Nityan@nda@108";
-// $dbname = "rfid_attendance";
-include 'config2.php';
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "rfid_attendance";
+// include 'config2.php';
 // Check if the connection was successful
 $conn = new mysqli($servername, $username, $password, $dbname);
 

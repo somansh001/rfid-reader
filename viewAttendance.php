@@ -28,7 +28,10 @@
 
 <body>
     <div class="wrapper">
-        <?php include "./includes/navbar.php"; ?>
+        <?php include "./includes/navbar.php";
+        // include "./api/conn.php";
+        // include "./api/conn2.php";
+        ?>
 
         <div class="container">
             <h1 style="text-align:center;margin-top:8%">View Attendance</h1>
@@ -36,10 +39,8 @@
             date_default_timezone_set('Asia/Kolkata');
 
             // Establish database connections
-            // $conn = mysqli_connect("localhost", "root", "", "oep_generic");
-            // $conn2 = mysqli_connect("localhost", "root", "", "rfid_attendance");
-            include 'api/conn.php';
-            include 'api/conn2.php';
+            $conn = mysqli_connect("localhost", "root", "", "oep_generic");
+            $conn2 = mysqli_connect("localhost", "root", "", "rfid_attendance");
             $selectedClass = $_POST['selectedClass'] ?? null;
             $selectedDate = $_POST['selectedDate'] ?? date("Y-m-d");
             $absentees = []; // This array will hold the absentees data

@@ -1,11 +1,11 @@
 <?php
 
 // Assuming you are using MySQL, establish a connection to your database
-// $servername = "localhost";
-// $username = "root";
-// $password = "";
-// $dbname = "oep_generic";
-include 'config.php';
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "oep_generic";
+// include 'config.php';
 // Create a new PDO instance
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
