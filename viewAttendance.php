@@ -35,9 +35,10 @@
             date_default_timezone_set('Asia/Kolkata');
 
             // Establish database connections
-            $conn = mysqli_connect("localhost", "root", "", "oep_generic");
-            $conn2 = mysqli_connect("localhost", "root", "", "rfid_attendance");
-
+            // $conn = mysqli_connect("localhost", "root", "", "oep_generic");
+            // $conn2 = mysqli_connect("localhost", "root", "", "rfid_attendance");
+            include 'api/conn.php';
+            include 'api/conn2.php';
             $selectedClass = $_POST['selectedClass'] ?? null;
             $selectedDate = $_POST['selectedDate'] ?? date("Y-m-d");
             $absentees = []; // This array will hold the absentees data

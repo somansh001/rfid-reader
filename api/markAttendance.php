@@ -3,8 +3,12 @@ date_default_timezone_set('Asia/Kolkata');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$conn = mysqli_connect("localhost", "root", "", "oep_generic");
-$conn2 = mysqli_connect("localhost", "root", "", "rfid_attendance");
+include 'conn.php';
+include 'conn2.php';
+
+
+// $conn = mysqli_connect("localhost", "root", "", "oep_generic");
+// $conn2 = mysqli_connect("localhost", "root", "", "rfid_attendance");
 
 if (isset($_POST['rfid_ids'])) {
     $rfid_ids = $_POST['rfid_ids'];
