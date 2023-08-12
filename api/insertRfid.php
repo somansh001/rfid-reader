@@ -1,16 +1,16 @@
 <?php
 
 // Assuming you are using MySQL, establish a connection to your database
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "oep_generic";
-
+// $servername = "localhost";
+// $username = "root";
+// $password = "";
+// $dbname = "oep_generic";
+include 'config.php';
 // Create a new PDO instance
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
+} catch (PDOException $e) {
     // Handle any connection errors
     echo "Connection failed: " . $e->getMessage();
     exit();
